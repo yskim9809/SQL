@@ -21,3 +21,10 @@ where category in ('과자', '국', '김치','식용유')
 group by category) t
 where f.price = t.MAX_PRICE and f.category = t.category
 order by MAX_PRICE desc
+
+--년, 월, 성별 별 상품 구매 회원 수 구하기
+SELECT extract(year from o.sales_date) year, extract(month from o.sales_date) month, u.gender gender, count(distinct u.user_id) users
+from USER_INFO u, ONLINE_SALE o
+where u.USER_ID = o.USER_ID and u.gender is not null
+group by extract(year from o.sales_date), extract(month from o.sales_date), u.gender
+order by year, month, gender
