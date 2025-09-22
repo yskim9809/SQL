@@ -41,6 +41,28 @@ left join animal_outs a on to_char(a.datetime,'hh24') = h.hours
 group by h.hours
 order by hour
 
+--언어별 개발자 분류하기
+SELECT grade, id, email
+FROM (
+    SELECT d.id,
+           d.email,
+           CASE
+             WHEN SUM(CASE WHEN s.name = 'Python' THEN 1 ELSE 0 END) > 0
+              AND SUM(CASE WHEN s.category = 'Front End' THEN 1 ELSE 0 END) > 0
+                  THEN 'A'
+             WHEN SUM(CASE WHEN s.name = 'C#' THEN 1 ELSE 0 END) > 0
+                  THEN 'B'
+             WHEN SUM(CASE WHEN s.category = 'Front End' THEN 1 ELSE 0 END) > 0
+                  THEN 'C'
+           END AS grade
+    FROM developers d
+    JOIN skillcodes s
+      ON (d.skill_code & s.code) = s.code
+    GROUP BY d.id, d.email
+) t
+WHERE grade IS NOT NULL
+ORDER BY grade, id;
+
 
 
 
