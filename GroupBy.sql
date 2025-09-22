@@ -1,5 +1,5 @@
 /*프로그래머스 SQL 고득점 Kit - Group By*/
-
+--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
 /*Lv.3*/
 
 /*Lv.4*/
@@ -28,3 +28,21 @@ from USER_INFO u, ONLINE_SALE o
 where u.USER_ID = o.USER_ID and u.gender is not null
 group by extract(year from o.sales_date), extract(month from o.sales_date), u.gender
 order by year, month, gender
+
+--입양 시각 구하기(2)
+with hours as( --시간 테이블 만들어놓기
+    select level-1 as hours --0~23시
+    from dual
+    connect by level<=24
+)
+select h.hours hour, count(a.animal_id) count
+from hours h
+left join animal_outs a on to_char(a.datetime,'hh24') = h.hours
+group by h.hours
+order by hour
+
+
+
+
+
+
