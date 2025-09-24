@@ -64,7 +64,20 @@ WHERE grade IS NOT NULL
 ORDER BY grade, id;
 
 
-
+-- 연간 평가점수에 해당하는 평가 등급 및 성과금 조회하기
+select e.EMP_NO EMP_NO, e.EMP_NAME EMP_NAME, 
+(case when sum(g.score)/2>=96 then 'S'
+      when sum(g.score)/2>=90 then 'A'
+      when sum(g.score)/2>=80 then 'B'
+      else 'C' end) as GRADE,
+(case when sum(g.score)/2>=96 then e.sal*0.2
+      when sum(g.score)/2>=90 then e.sal*0.15
+      when sum(g.score)/2>=80 then e.sal*0.1
+      else e.sal*0 end) as BONUS
+from HR_EMPLOYEES e, HR_GRADE g
+where e.EMP_NO = g.EMP_NO 
+group by e.emp_no
+order by EMP_NO
 
 
 
