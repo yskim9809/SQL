@@ -1,6 +1,15 @@
 /*프로그래머스 SQL 고득점 Kit - Select*/
 --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
 
+/*Lv.1*/
+
+--Python 개발자 찾기
+select ID, EMAIL, FIRST_NAME, LAST_NAME
+from DEVELOPER_INFOS 
+where 'Python' in (SKILL_1, SKILL_2, SKILL_3)
+order by ID
+
+
 /*Lv.2*/
 
 --업그레이드 된 아이템 구하기
