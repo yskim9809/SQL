@@ -9,6 +9,11 @@ from DEVELOPER_INFOS
 where 'Python' in (SKILL_1, SKILL_2, SKILL_3)
 order by ID
 
+--잔챙이 잡은 수 구하기
+select count(*) FISH_COUNT
+from FISH_INFO 
+where length<=10 or length is null
+
 
 /*Lv.2*/
 
