@@ -14,6 +14,13 @@ select count(*) FISH_COUNT
 from FISH_INFO 
 where length<=10 or length is null
 
+--가장 큰 물고기 10마리 구하기
+select ID, LENGTH
+from FISH_INFO 
+order by LENGTH desc, ID asc
+where rownum>=10
+--||fetch first 10 rows only 오라클
+--mysql에선 limit 10
 
 /*Lv.2*/
 
