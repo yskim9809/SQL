@@ -22,6 +22,10 @@ where rownum>=10
 --||fetch first 10 rows only 오라클
 --mysql에선 limit 10
 
+
+--특정 형질을 가지는 대장균 찾기
+
+
 /*Lv.2*/
 
 --업그레이드 된 아이템 구하기
