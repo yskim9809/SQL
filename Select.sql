@@ -28,6 +28,9 @@ select count(*) as count
 from ECOLI_DATA 
 where (GENOTYPE &1 <> 0 or GENOTYPE &4 <> 0) and (GENOTYPE &2 =0) --1,3포함,2미포함
 
+--
+select
+
 /*Lv.2*/
 
 --업그레이드 된 아이템 구하기
