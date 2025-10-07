@@ -28,8 +28,7 @@ select count(*) as count
 from ECOLI_DATA 
 where (GENOTYPE &1 <> 0 or GENOTYPE &4 <> 0) and (GENOTYPE &2 =0) --1,3포함,2미포함
 
---
-select
+
 
 
 /*Lv.2*/
@@ -42,6 +41,9 @@ from ITEM_INFO
 where RARITY like 'RARE') i, ITEM_INFO  ii
 where i.ITEM_ID = t.PARENT_ITEM_ID and t.ITEM_ID = ii.ITEM_ID
 order by t.ITEM_ID desc
+
+--부모의 형질을 모두 가지는 대장균 찾기
+
 
 --특정 물고기를 잡은 총 수 구하기
 select count(ID) FISH_COUNT
