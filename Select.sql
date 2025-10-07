@@ -42,3 +42,11 @@ from ITEM_INFO
 where RARITY like 'RARE') i, ITEM_INFO  ii
 where i.ITEM_ID = t.PARENT_ITEM_ID and t.ITEM_ID = ii.ITEM_ID
 order by t.ITEM_ID desc
+
+--특정 물고기를 잡은 총 수 구하기
+select count(ID) FISH_COUNT
+from FISH_INFO 
+where FISH_TYPE in 
+(select FISH_TYPE
+from FISH_NAME_INFO 
+where FISH_NAME in ('BASS','SNAPPER'))
