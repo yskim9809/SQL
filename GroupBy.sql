@@ -1,6 +1,19 @@
 /*프로그래머스 SQL 고득점 Kit - Group By*/
 --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
+
 /*Lv.3*/
+
+--자동차 대여 기록에서 대여중 / 대여 가능 여부 구분하기
+SELECT car_id, max(case /*어떤 기록이라도 대여중이면 대여중으로 출력*/
+               when to_date('20221016','yyyymmdd') 
+                between start_date and end_Date
+               then '대여중'
+               else '대여 가능'
+               end) as AVAILABILITY
+from CAR_RENTAL_COMPANY_RENTAL_HISTORY 
+group by car_id
+order by car_id desc
+
 
 /*Lv.4*/
 
