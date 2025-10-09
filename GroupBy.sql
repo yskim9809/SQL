@@ -29,7 +29,6 @@ group by extract(month from start_date),car_id
 having count(*)<>0
 order by month, car_id desc
 
-
 /*Lv.4*/
 
 --저자 별 카테고리 별 매출액 집계하기
