@@ -3,6 +3,7 @@
 
 /*Lv.3*/
 
+
 --자동차 대여 기록에서 대여중 / 대여 가능 여부 구분하기
 SELECT car_id, max(case /*어떤 기록이라도 대여중이면 대여중으로 출력*/
                when to_date('20221016','yyyymmdd') 
