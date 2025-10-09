@@ -14,6 +14,20 @@ from CAR_RENTAL_COMPANY_RENTAL_HISTORY
 group by car_id
 order by car_id desc
 
+--대여 횟수가 많은 자동차들의 월별 대여 횟수 구하기
+SELECT extract(month from start_date) as MONTH, car_id, count(*) as RECORDS
+from CAR_RENTAL_COMPANY_RENTAL_HISTORY
+where to_char(start_date,'yyyy-mm-dd') between '2022-08-01' and '2022-10-31'
+and car_id in( /*car_id만 제한하고있으니 바깥쿼리도 날짜 제한필요*/
+    select car_id 
+    from CAR_RENTAL_COMPANY_RENTAL_HISTORY
+    where extract(month from start_date) in (8,9,10)
+    group by car_id
+    having count(*)>=5
+             )
+group by extract(month from start_date),car_id
+having count(*)<>0
+order by month, car_id desc
 
 /*Lv.4*/
 
