@@ -107,5 +107,8 @@ where e.EMP_NO = g.EMP_NO
 group by e.emp_no
 order by EMP_NO
 
+--
+select
+
 
 
