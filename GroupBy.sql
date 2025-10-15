@@ -30,6 +30,15 @@ group by extract(month from start_date),car_id
 having count(*)<>0
 order by month, car_id desc
 
+--즐겨찾기가 가장 많은 식당 정보 출력하기
+SELECT FOOD_TYPE, REST_ID, REST_NAME, FAVORITES
+from REST_INFO 
+where (food_type, FAVORITES) 
+in (select food_type, max(FAVORITES)
+from rest_info
+group by food_type)
+order by FOOD_TYPE desc
+
 /*Lv.4*/
 
 --저자 별 카테고리 별 매출액 집계하기
