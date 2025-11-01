@@ -18,3 +18,12 @@ left join animal_outs o
 on i.animal_id=o.animal_id
 where o.datetime is null
 order by i.datetime FETCH FIRST 3 ROWS ONLY;
+
+
+--없어진 기록 찾기
+SELECT o.animal_id, o.name
+from animal_ins i
+right join animal_outs o
+on i.animal_id=o.animal_id 
+where i.animal_id is null
+order by o.animal_id;
