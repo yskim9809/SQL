@@ -9,6 +9,12 @@ from PRODUCT p join OFFLINE_SALE o on p.PRODUCT_ID = o.PRODUCT_ID
 group by p.PRODUCT_CODE
 order by SALES desc, PRODUCT_CODE asc
 
+--조건에 맞는 도서와 저자 리스트 출력하기
+SELECT b.book_id, a.author_name, to_char(published_date,'yyyy-mm-dd')
+from book b, author a
+where b.author_id=a.author_id and b.category='경제'
+order by b.published_date;
+
 /*Lv.3*/
 
 --오랜 기간 보호한 동물(1)
