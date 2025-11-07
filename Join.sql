@@ -48,3 +48,12 @@ order by count(r.REVIEW_ID) desc
 fetch first 1rows only) t, MEMBER_PROFILE p, REST_REVIEW rr
 where t.MEMBER_ID = p.MEMBER_ID and p.MEMBER_ID = rr.MEMBER_ID
 order by REVIEW_DATE , REVIEW_TEXT
+
+
+--주문량이 많은 아이스크림들 조회하기
+SELECT f.flavor
+from first_half f
+inner join (select flavor, sum(total_order) as total_order from july group by flavor) t
+on f.flavor=t.flavor
+order by f.total_order+t.total_order desc
+limit 3
