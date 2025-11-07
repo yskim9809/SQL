@@ -63,3 +63,13 @@ inner join (select flavor, sum(total_order) as total_order from july group by fl
 on f.flavor=t.flavor
 order by f.total_order+t.total_order desc
 limit 3
+
+--5월 식품들의 총매출 조회하기
+select f.PRODUCT_ID, f.PRODUCT_NAME, t.TOTAL_SALES 
+from (SELECT p.PRODUCT_ID pid, sum(p.price*o.amount) as TOTAL_SALES 
+      from FOOD_PRODUCT p join FOOD_ORDER o 
+      on p.PRODUCT_ID = o.PRODUCT_ID
+      where extract(month from PRODUCE_DATE) = 5 
+      group by p.PRODUCT_ID) t , FOOD_PRODUCT f 
+where t.pid = f.PRODUCT_ID
+order by TOTAL_SALES desc, PRODUCT_ID
