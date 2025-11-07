@@ -1,8 +1,24 @@
 /*프로그래머스 SQL 고득점 Kit - Group By*/
 --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
 
-/*Lv.3*/
+/*Lv.2*/
 
+--입양 시각 구하기(1)
+SELECT to_number(to_char(datetime, 'hh24')) HOUR, count(animal_id) COUNT
+from ANIMAL_OUTS 
+--where to_char(datetime, 'hh24') between '09' and '19'
+group by to_char(datetime, 'hh24')
+having to_char(datetime, 'hh24') between '09' and '19'
+order by hour
+
+--가격대 별 상품 개수 구하기
+SELECT TRUNC(PRICE, -4) AS PRICE_GROUP, COUNT(PRODUCT_ID) AS PRODUCTS
+FROM PRODUCT
+GROUP BY TRUNC(PRICE, -4) --4자릿수 날림
+ORDER BY PRICE_GROUP ASC;
+
+
+/*Lv.3*/
 
 --자동차 대여 기록에서 대여중 / 대여 가능 여부 구분하기
 SELECT car_id, max(case /*어떤 기록이라도 대여중이면 대여중으로 출력*/
