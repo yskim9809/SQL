@@ -17,6 +17,11 @@ FROM PRODUCT
 GROUP BY TRUNC(PRICE, -4) --4자릿수 날림
 ORDER BY PRICE_GROUP ASC;
 
+--성분으로 구분한 아이스크림 총 주문량
+SELECT i.INGREDIENT_TYPE, sum(f.TOTAL_ORDER)TOTAL_ORDER
+from FIRST_HALF f, ICECREAM_INFO i
+where f.flavor=i.flavor
+group by i.INGREDIENT_TYPE
 
 /*Lv.3*/
 
