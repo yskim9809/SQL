@@ -60,6 +60,14 @@ from rest_info
 group by food_type)
 order by FOOD_TYPE desc
 
+--조건에 맞는 사용자와 총 거래금액 조회하기
+SELECT u.USER_ID, u.NICKNAME, sum(b.price) as TOTAL_SALES
+from USED_GOODS_BOARD  b, USED_GOODS_USER u 
+where b.WRITER_ID = u.USER_ID and b.status = 'DONE'
+group by u.user_id, u.nickname
+having sum(b.price)>=700000
+order by TOTAL_SALES
+
 /*Lv.4*/
 
 --저자 별 카테고리 별 매출액 집계하기
