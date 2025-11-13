@@ -30,6 +30,13 @@ group by month
 having fish_count >0
 order by month
 
+--물고기 종류 별 잡은 수 구하기
+select count(ID) FISH_COUNT, b.FISH_NAME FISH_NAME
+from FISH_INFO a
+inner join FISH_NAME_INFO b
+on a.fish_type = b.fish_type
+group by b.fish_name
+order by count(id) desc
 
 /*Lv.3*/
 
