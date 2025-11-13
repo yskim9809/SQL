@@ -68,6 +68,23 @@ group by u.user_id, u.nickname
 having sum(b.price)>=700000
 order by TOTAL_SALES
 
+--특정 조건을 만족하는 물고기별 수와 최대 길이 구하기
+SELECT 
+    COUNT(*) AS FISH_COUNT,
+    MAX(i.length) AS MAX_LENGTH,
+    i.FISH_TYPE
+FROM fish_info i
+JOIN (
+    SELECT fish_type
+    FROM fish_info
+    GROUP BY fish_type
+    HAVING AVG(IFNULL(length, 10)) >= 33
+) t ON i.fish_type = t.fish_type
+GROUP BY i.fish_type
+ORDER BY i.fish_type;
+
+
+
 /*Lv.4*/
 
 --저자 별 카테고리 별 매출액 집계하기
