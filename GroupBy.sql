@@ -23,6 +23,14 @@ from FIRST_HALF f, ICECREAM_INFO i
 where f.flavor=i.flavor
 group by i.INGREDIENT_TYPE
 
+--월별 잡은 물고기 수 구하기
+select count(id) fish_count, month(time) month
+from fish_info
+group by month
+having fish_count >0
+order by month
+
+
 /*Lv.3*/
 
 --자동차 대여 기록에서 대여중 / 대여 가능 여부 구분하기
