@@ -45,6 +45,14 @@ where to_char(APNT_YMD,'yyyymm') = '202205'
 group by MCDP_CD
 order by count(*), mcdp_cd
 
+--자동차 종류 별 특정 옵션이 포함된 자동차 수 구하기
+SELECT car_type, count(*) CARS
+from car_rental_company_car
+where options like '%시트%'
+group by car_type
+order by car_type;
+
+
 /*Lv.3*/
 
 --자동차 대여 기록에서 대여중 / 대여 가능 여부 구분하기
