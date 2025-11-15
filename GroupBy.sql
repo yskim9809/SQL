@@ -38,6 +38,13 @@ on a.fish_type = b.fish_type
 group by b.fish_name
 order by count(id) desc
 
+--진료과별 총 예약 횟수 출력하기
+SELECT MCDP_CD as "진료과코드", count(*) as "5월예약건수"
+FROM APPOINTMENT 
+where to_char(APNT_YMD,'yyyymm') = '202205'
+group by MCDP_CD
+order by count(*), mcdp_cd
+
 /*Lv.3*/
 
 --자동차 대여 기록에서 대여중 / 대여 가능 여부 구분하기
