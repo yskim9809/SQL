@@ -41,6 +41,17 @@ WHERE A.CREATED_DATE BETWEEN TO_DATE('20221001','YYYYMMDD') AND TO_DATE('2022103
 AND B.REPLY_ID IS NOT NULL
 ORDER BY B.CREATED_DATE ASC, A.TITLE ASC;
 
+--인기있는 아이스크림
+SELECT flavor
+from first_half
+order by total_order desc, shipment_id asc;
+
+--조건에 맞는 도서 리스트 출력하기
+SELECT BOOK_ID, to_char(PUBLISHED_DATE,'yyyy-mm-dd') PUBLISHED_DATE
+from book
+where category like '인문' and to_char(PUBLISHED_DATE,'yyyy') = 2021
+order by PUBLISHED_DATE
+
 
 
 /*Lv.2*/
