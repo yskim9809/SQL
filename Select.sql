@@ -22,7 +22,6 @@ where rownum>=10
 --||fetch first 10 rows only 오라클
 --mysql에선 limit 10
 
-
 --특정 형질을 가지는 대장균 찾기
 select count(*) as count
 from ECOLI_DATA 
@@ -52,6 +51,17 @@ from book
 where category like '인문' and to_char(PUBLISHED_DATE,'yyyy') = 2021
 order by PUBLISHED_DATE
 
+--12세 이하인 여자 환자 목록 출력하기
+SELECT pt_name, pt_no, gend_cd, age, nvl(tlno,'NONE') as tlno
+from patient
+where age<=12 and gend_cd='W'
+order by age desc, pt_name asc;
+
+--과일로 만든 아이스크림 고르기
+SELECT f.flavor
+from first_half f, icecream_info i
+where f.flavor=i.flavor
+and f.total_order>3000 and i.ingredient_type='fruit_based';
 
 
 /*Lv.2*/
