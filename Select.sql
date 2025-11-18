@@ -28,6 +28,19 @@ select count(*) as count
 from ECOLI_DATA 
 where (GENOTYPE &1 <> 0 or GENOTYPE &4 <> 0) and (GENOTYPE &2 =0) --1,3포함,2미포함
 
+--평균 일일 대여 요금 구하기
+SELECT round(avg(daily_fee)) as average_fee
+from car_rental_company_car
+where car_type='SUV';
+
+--조건에 부합하는 중고거래 댓글 조회하기
+SELECT A.TITLE, A.BOARD_ID, B.REPLY_ID, B.WRITER_ID, B.CONTENTS, TO_CHAR(B.CREATED_DATE,'YYYY-MM-DD') AS CREATED_DATE 
+FROM USED_GOODS_BOARD A
+LEFT JOIN USED_GOODS_REPLY B ON A.BOARD_ID = B.BOARD_ID
+WHERE A.CREATED_DATE BETWEEN TO_DATE('20221001','YYYYMMDD') AND TO_DATE('20221031','YYYYMMDD')
+AND B.REPLY_ID IS NOT NULL
+ORDER BY B.CREATED_DATE ASC, A.TITLE ASC;
+
 
 
 /*Lv.2*/
