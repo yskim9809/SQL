@@ -63,6 +63,11 @@ from first_half f, icecream_info i
 where f.flavor=i.flavor
 and f.total_order>3000 and i.ingredient_type='fruit_based';
 
+--흉부외과 또는 일반외과 의사 목록 출력하기
+SELECT dr_name, dr_id, MCDP_CD, TO_CHAR(HIRE_YMD, 'YYYY-MM-DD') as HIRE_YMD 
+from doctor
+where MCDP_CD='CS' or MCDP_CD='GS'
+order by hire_ymd desc, dr_name asc;
 
 /*Lv.2*/
 
