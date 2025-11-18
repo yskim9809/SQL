@@ -69,6 +69,14 @@ from doctor
 where MCDP_CD='CS' or MCDP_CD='GS'
 order by hire_ymd desc, dr_name asc;
 
+--강원도에 위치한 생산공장 목록 출력하기
+SELECT factory_id, factory_name, address
+from food_factory
+where address like '%강원%'
+order by factory_id asc;
+
+
+
 /*Lv.2*/
 
 --업그레이드 된 아이템 구하기
@@ -90,3 +98,19 @@ where FISH_TYPE in
 (select FISH_TYPE
 from FISH_NAME_INFO 
 where FISH_NAME in ('BASS','SNAPPER'))
+
+/*Lv.3*/
+
+/*Lv.4*/
+
+--서울에 위치한 식당 목록 출력하기
+SELECT i.REST_ID, i.REST_NAME, i.FOOD_TYPE, i.FAVORITES, i.ADDRESS,
+        ROUND(AVG(r.REVIEW_SCORE),2) AS SCORE
+FROM REST_INFO i
+INNER JOIN REST_REVIEW r 
+ON i.REST_ID = r.REST_ID
+WHERE i.ADDRESS LIKE '서울%'
+GROUP BY i.REST_ID
+ORDER BY SCORE DESC, i.FAVORITES DESC;
+
+
