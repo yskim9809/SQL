@@ -73,3 +73,5 @@ from (SELECT p.PRODUCT_ID pid, sum(p.price*o.amount) as TOTAL_SALES
       group by p.PRODUCT_ID) t , FOOD_PRODUCT f 
 where t.pid = f.PRODUCT_ID
 order by TOTAL_SALES desc, PRODUCT_ID
+
+--특정 기간동안 대여 가능한 자동차들의 대여비용 구하기
