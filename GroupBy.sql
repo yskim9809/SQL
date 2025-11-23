@@ -52,6 +52,12 @@ where options like '%시트%'
 group by car_type
 order by car_type;
 
+--고양이와 개는 몇 마리 있을까
+SELECT animal_type, count(animal_type)
+from animal_ins
+group by animal_type
+order by animal_type;
+
 
 /*Lv.3*/
 
@@ -97,6 +103,13 @@ where b.WRITER_ID = u.USER_ID and b.status = 'DONE'
 group by u.user_id, u.nickname
 having sum(b.price)>=700000
 order by TOTAL_SALES
+
+--카테고리 별 도서 판매량 집계하기
+SELECT b.category, sum(s.sales) as total_sales
+from book b, book_sales s
+where b.book_id=s.book_id and to_char(s.sales_date,'yyyy-mm')='2022-01'
+group by b.category
+order by b.category;
 
 --특정 조건을 만족하는 물고기별 수와 최대 길이 구하기
 SELECT 
