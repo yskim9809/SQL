@@ -79,6 +79,13 @@ order by factory_id asc;
 
 /*Lv.2*/
 
+--3월에 태어난 여성 회원 목록 출력하기
+SELECT MEMBER_ID, MEMBER_NAME, GENDER, to_char(DATE_OF_BIRTH,'yyyy-mm-dd') DATE_OF_BIRTH
+from MEMBER_PROFILE 
+where tlno is not null and gender like 'W'
+and to_char(DATE_OF_BIRTH,'mm') =03
+order by MEMBER_ID
+
 --재구매가 일어난 상품과 회원 리스트 구하기
 SELECT user_id, product_id
 from online_sale
