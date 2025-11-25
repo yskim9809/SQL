@@ -23,6 +23,13 @@ from FIRST_HALF f, ICECREAM_INFO i
 where f.flavor=i.flavor
 group by i.INGREDIENT_TYPE
 
+--노선별 평균 역 사이 거리 조회하기
+select route, concat(round(sum(d_between_dist),1),"km") TOTAL_DISTANCE, 
+concat(round(sum(d_between_dist)/count(no),2),"km") AVERAGE_DISTANCE
+from SUBWAY_DISTANCE
+group by route
+order by sum(d_between_dist) desc
+
 --월별 잡은 물고기 수 구하기
 select count(id) fish_count, month(time) month
 from fish_info
@@ -110,6 +117,13 @@ from book b, book_sales s
 where b.book_id=s.book_id and to_char(s.sales_date,'yyyy-mm')='2022-01'
 group by b.category
 order by b.category;
+
+--부서별 평균 연봉 조회하기
+select d.DEPT_ID, d.DEPT_NAME_EN, round(avg(e.sal)) AVG_SAL
+from HR_DEPARTMENT  d, HR_EMPLOYEES e
+where d.DEPT_ID= e.DEPT_ID
+group by d.dept_id
+order by AVG_SAL desc
 
 --특정 조건을 만족하는 물고기별 수와 최대 길이 구하기
 SELECT 
