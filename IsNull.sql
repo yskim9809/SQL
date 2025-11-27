@@ -27,9 +27,19 @@ SELECT count(*) USERS
 from USER_INFO 
 where age is null
 
+--잡은 물고기의 평균 길이 구하기
+select round(avg(IFNULL(LENGTH, 10)),2) AVERAGE_LENGTH
+from FISH_INFO
+
 /*Lv.2*/
 
 --NULL 처리하기
 SELECT ANIMAL_TYPE, NVL(NAME,'No name'), SEX_UPON_INTAKE
 from ANIMAL_INS 
 order by ANIMAL_ID
+
+--ROOT 아이템 구하기
+select i.ITEM_ID, i.ITEM_NAME
+from ITEM_INFO i, ITEM_TREE t
+where i.ITEM_ID=t.ITEM_ID and t.PARENT_ITEM_ID is null
+order by i.ITEM_ID
