@@ -22,5 +22,14 @@ from ANIMAL_INS
 where name is not null
 order by ANIMAL_ID
 
+--나이 정보가 없는 회원 수 구하기
+SELECT count(*) USERS
+from USER_INFO 
+where age is null
 
 /*Lv.2*/
+
+--NULL 처리하기
+SELECT ANIMAL_TYPE, NVL(NAME,'No name'), SEX_UPON_INTAKE
+from ANIMAL_INS 
+order by ANIMAL_ID
