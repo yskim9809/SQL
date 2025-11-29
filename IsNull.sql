@@ -43,3 +43,13 @@ select i.ITEM_ID, i.ITEM_NAME
 from ITEM_INFO i, ITEM_TREE t
 where i.ITEM_ID=t.ITEM_ID and t.PARENT_ITEM_ID is null
 order by i.ITEM_ID
+
+
+/*Lv.3*/
+
+--업그레이드 할 수 없는 아이템 구하기
+select i.ITEM_ID, i.ITEM_NAME, i.RARITY
+from ITEM_INFO i
+where not exists(select 1 from ITEM_TREE t where t.PARENT_ITEM_ID = i.ITEM_ID)
+order by ITEM_ID desc
+
