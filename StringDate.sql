@@ -39,3 +39,15 @@ from CAR_RENTAL_COMPANY_RENTAL_HISTORY
 group by car_id
 having round(avg(END_DATE-START_DATE+1),1) >=7
 order by round(avg(END_DATE-START_DATE+1),1) desc, CAR_ID desc
+
+--루시와 엘라 찾기
+SELECT animal_id, name, sex_upon_intake
+from animal_ins
+where name in ('Lucy','Ella','Pickle','Rogan','Sabrina','Mitty')
+order by animal_id;
+
+--이름에 el이 들어가는 동물 찾기
+SELECT animal_id, name
+from animal_ins
+where animal_type='Dog' and lower(name) like '%el%'
+order by name;
