@@ -20,3 +20,22 @@ SELECT car_id, car_type, daily_fee, options
 from car_rental_company_car
 where options like '%네비게이션%'
 order by car_id desc;
+
+
+/*Lv.2*/
+--조건에 부합하는 중고거래 상태 조회하기
+SELECT board_id, writer_id, title, price, 
+case when status='SALE' then '판매중'
+     when status='RESERVED' then '예약중'
+     when status='DONE' then '거래완료'
+end as status
+from used_goods_board
+where to_char(created_date,'yyyy-mm-dd')='2022-10-05'
+order by board_id desc;
+
+--자동차 평균 대여 기간 구하기
+SELECT CAR_ID, to_char(round(avg(END_DATE-START_DATE+1),1),'FM999.0') AVERAGE_DURATION
+from CAR_RENTAL_COMPANY_RENTAL_HISTORY 
+group by car_id
+having round(avg(END_DATE-START_DATE+1),1) >=7
+order by round(avg(END_DATE-START_DATE+1),1) desc, CAR_ID desc
