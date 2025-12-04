@@ -51,3 +51,15 @@ SELECT animal_id, name
 from animal_ins
 where animal_type='Dog' and lower(name) like '%el%'
 order by name;
+
+--중성화 여부 파악하기
+SELECT animal_id, name, case when (sex_upon_intake like 'Intact%') then 'X'
+else 'O' end as 중성화
+from animal_ins
+order by animal_id;
+
+--카테고리 별 상품 개수 구하기
+SELECT substr(product_code,1,2) category, count(*) products
+from product
+group by substr(product_code,1,2)
+order by category asc;
