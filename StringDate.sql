@@ -23,6 +23,7 @@ order by car_id desc;
 
 
 /*Lv.2*/
+
 --조건에 부합하는 중고거래 상태 조회하기
 SELECT board_id, writer_id, title, price, 
 case when status='SALE' then '판매중'
@@ -63,3 +64,22 @@ SELECT substr(product_code,1,2) category, count(*) products
 from product
 group by substr(product_code,1,2)
 order by category asc;
+
+--DATETIME에서 DATE로 형 변환
+SELECT animal_id, name, to_char(datetime,'yyyy-mm-dd')
+from animal_ins
+order by animal_id;
+
+
+/*Lv.3*/
+
+--조건에 맞는 사용자 정보 조회하기
+SELECT u.user_id as USER_ID, u.nickname as NICKNAME, 
+u.city||' '||u.street_address1||' '||u.street_address2 as 전체주소,
+REGEXP_REPLACE(u.tlno, '(.{3})(.+)(.{4})', '\1-\2-\3') as 전화번호
+from USED_GOODS_USER u
+where u.user_id in(
+    select writer_id from USED_GOODS_BOARD 
+    group by writer_id
+    having count(writer_id)>=3)
+order by USER_ID desc;
