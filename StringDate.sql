@@ -73,6 +73,12 @@ order by animal_id;
 
 /*Lv.3*/
 
+--대여 기록이 존재하는 자동차 리스트 구하기
+select distinct c.car_id 
+from CAR_RENTAL_COMPANY_CAR c, CAR_RENTAL_COMPANY_RENTAL_HISTORY h
+where c.car_id=h.car_id and c.car_type='세단' and to_char(h.start_date,'mm')=10
+order by c.car_id desc;
+
 --조건에 맞는 사용자 정보 조회하기
 SELECT u.user_id as USER_ID, u.nickname as NICKNAME, 
 u.city||' '||u.street_address1||' '||u.street_address2 as 전체주소,
@@ -83,3 +89,4 @@ where u.user_id in(
     group by writer_id
     having count(writer_id)>=3)
 order by USER_ID desc;
+
