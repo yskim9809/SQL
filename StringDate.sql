@@ -90,3 +90,11 @@ where u.user_id in(
     having count(writer_id)>=3)
 order by USER_ID desc;
 
+--조건별로 분류하여 주문상태 출력하기
+SELECT order_id, product_id, to_char(out_date,'yyyy-mm-dd'), 
+case when to_char(out_date,'yymmdd')<=220501 then '출고완료'
+     when to_char(out_date,'yymmdd')>220501 then '출고대기'
+     else '출고미정'
+end as 출고여부
+from food_order
+order by order_id;
