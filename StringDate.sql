@@ -98,3 +98,5 @@ case when to_char(out_date,'yymmdd')<=220501 then '출고완료'
 end as 출고여부
 from food_order
 order by order_id;
+
+--오랜 기간 보호한 동물(2)
