@@ -100,3 +100,8 @@ from food_order
 order by order_id;
 
 --오랜 기간 보호한 동물(2)
+SELECT o.animal_id, o.name
+from animal_ins i, animal_outs o
+where i.animal_id=o.animal_id and o.datetime is not null
+order by o.datetime-i.datetime desc
+fetch next 2 rows only;
