@@ -22,7 +22,6 @@ from fish_info
 
 /*Lv.2*/
 
-
 --가격이 제일 비싼 식품의 정보 출력하기
 -- SELECT *
 -- from (select * from FOOD_PRODUCT order by price desc)
@@ -31,3 +30,15 @@ from fish_info
 select * 
 from FOOD_PRODUCT 
 where price = (select max(price) from FOOD_PRODUCT )
+
+--최솟값 구하기
+SELECT min(datetime)
+from animal_ins;
+
+--동물 수 구하기
+SELECT count(*)
+from ANIMAL_INS
+
+--중복 제거하기
+SELECT count(distinct name)
+from ANIMAL_INS
