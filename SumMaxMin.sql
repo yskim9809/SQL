@@ -42,3 +42,16 @@ from ANIMAL_INS
 --중복 제거하기
 SELECT count(distinct name)
 from ANIMAL_INS
+
+--조건에 맞는 아이템들의 가격의 총합 구하기
+select sum(price) as TOTAL_PRICE
+from ITEM_INFO 
+where RARITY like 'LEGEND'
+
+--연도별 대장균 크기의 편차 구하기
+select year(DIFFERENTIATION_DATE) as YEAR, m.size-t.SIZE_OF_COLONY YEAR_DEV, ID
+from ECOLI_DATA t
+join (select max(SIZE_OF_COLONY) as size,YEAR(DIFFERENTIATION_DATE) as year
+from ECOLI_DATA group by YEAR(DIFFERENTIATION_DATE)) m
+on year(t.DIFFERENTIATION_DATE) = m.year
+order by YEAR, YEAR_DEV
