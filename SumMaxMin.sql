@@ -55,3 +55,14 @@ join (select max(SIZE_OF_COLONY) as size,YEAR(DIFFERENTIATION_DATE) as year
 from ECOLI_DATA group by YEAR(DIFFERENTIATION_DATE)) m
 on year(t.DIFFERENTIATION_DATE) = m.year
 order by YEAR, YEAR_DEV
+
+
+/*Lv.3*/
+
+--물고기 종류 별 대어 찾기
+select i.id ID, n.fish_name FISH_NAME, i.length LENGTH
+from fish_info i
+join fish_name_info n using(fish_type)
+where i.length = (select max(ii.length) from fish_info ii
+                 where i.fish_type = ii.fish_type)
+order by ID
